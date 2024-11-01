@@ -7,7 +7,10 @@ export const linkProps = {
   disabled: Boolean,
   underline: Boolean,
   target: String as PropType<'_blank' | '_parent' | '_self' | '_top'>,
-  download: Boolean
+  download: {
+    type: [String, Boolean] as PropType<string | true>,
+    default: undefined
+  }
 } as const;
 
 export type LinkProps = ExtractPropTypes<typeof linkProps>;

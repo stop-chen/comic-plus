@@ -6,7 +6,7 @@
 
 <p align="center">
  <img src="https://img.shields.io/badge/license-MIT-green"/>
- <img src="https://img.shields.io/badge/version-1.8.1-red"/>
+ <img src="https://img.shields.io/badge/version-1.8.2-red"/>
  <img src="https://img.shields.io/badge/npm-v2.8.3-green"/>
  <img src="https://img.shields.io/badge/typescript-^5.6.2-blue"/>
  <img src="https://img.shields.io/badge/extension for-VsCode-purple"/>
