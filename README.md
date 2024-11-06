@@ -56,13 +56,7 @@ import { /* 组件名 */ } from 'comic-plus';
 ## 参与贡献
 
 <p>
-  <a href="https://github.com/qq2993496157" align="center">
+  <a href="https://github.com/neishuishui" align="center">
     <img  width="40px" src="https://avatars.githubusercontent.com/u/72653133?v=4" />
   </a>
-</p>
-
-#### 征集
-
-<p>
-需要一个可以帮我重新设计组件样式配色的UI，项目无偿，但会在参与贡献处添加你的署名，并将你的名片挂在该站。
 </p>
