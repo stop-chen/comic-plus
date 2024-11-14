@@ -3,7 +3,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 export const tabsProps = {
   modelValue: [String, Number] as PropType<string | number>,
   type: {
-    type: String as PropType<'line' | 'card' | 'circle'>,
+    type: String as PropType<'line' | 'card' | 'arc'>,
     default: 'line'
   },
   color: String,

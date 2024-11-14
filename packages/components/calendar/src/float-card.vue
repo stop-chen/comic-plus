@@ -31,7 +31,7 @@
 import { PropType, computed, ref, watch } from 'vue';
 import { useMouse, type UseMouseEventExtractor } from '@vueuse/core';
 import { useFloating, offset, flip, shift } from '@floating-ui/vue';
-import { formatDate, getNextZIndex } from '../../../utils';
+import { formatDate, getNextZIndex, raf } from '../../../utils';
 
 const props = defineProps({
   data: Object,
@@ -56,8 +56,8 @@ const { floatingStyles } = useFloating(virtualEl, containerRef, {
   middleware: [offset(10), flip(), shift({ padding: 10 })]
 });
 
-watch([x, y], () => {
-  requestAnimationFrame(() => {
+const updateVirtualEl = () => {
+  raf(() => {
     virtualEl.value = {
       getBoundingClientRect() {
         return {
@@ -73,7 +73,9 @@ watch([x, y], () => {
       }
     };
   });
-});
+};
+
+watch([x, y], updateVirtualEl);
 
 watch(
   () => props.data,
@@ -83,6 +85,7 @@ watch(
         zIndex.value = getNextZIndex();
       }
       recordData.value = val;
+      updateVirtualEl();
     } else {
       zIndex.value = 0;
     }

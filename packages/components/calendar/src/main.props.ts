@@ -21,7 +21,8 @@ export const calendarProps = {
   schedules: {
     type: Array as PropType<Schedules>
   },
-  cardWidth: Number
+  cardWidth: Number,
+  format: String
 } as const;
 
 export type CalendarProps = ExtractPropTypes<typeof calendarProps>;

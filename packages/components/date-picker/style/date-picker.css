@@ -49,7 +49,7 @@
 }
 
 .cu-date-picker__select {
-  width: 320px;
+  width: 280px;
 }
 .cu-data-picker__select-head {
   padding: 8px;
@@ -60,7 +60,7 @@
 .cu-data-picker__select-head .head-content {
   flex: 1;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   align-items: center;
   display: flex;
 }
@@ -87,11 +87,9 @@
 .cu-data-picker__select-content {
   width: 100%;
 }
-.cu-data-picker__select-content > div {
-  display: flex;
-}
+
 .cu-data-picker__select-week {
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
   display: flex;
   border-bottom: 1px solid var(--cu-border-color);
@@ -107,73 +105,85 @@
   cursor: pointer;
   box-sizing: border-box;
 }
-.cu-data-picker__select-days {
-  flex-direction: column;
-}
-.cu-data-picker__select-days > div {
+.cu-data-picker__table {
   width: 100%;
-  display: flex;
-}
-.cu-data-picker__select-days > div + div {
-  margin-top: 8px;
+  table-layout: fixed;
+  border-spacing: 0 4px;
 }
 
-.cu-data-picker__select-days > div > span {
-  position: relative;
-  flex: 1;
-  height: 32px;
-  padding: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.cu-data-picker__table td {
+  padding: 4px 0;
   cursor: pointer;
-  box-sizing: border-box;
-  transition: all 200ms ease;
+  text-align: center;
 }
 
-.cu-data-picker__select-days > div > .is-notcur:not(.is-disabled) {
+.cu-date__cell {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  align-content: center;
+  transition: all 200ms ease;
+  font-size: 12px;
+}
+
+.cu-data-picker__table .is-notcur:not(.is-disabled) {
   color: var(--cu-text-color-light6);
 }
-.cu-data-picker__select-month,
-.cu-data-picker__select-year {
+
+.cu-data-picker__div {
+  display: flex;
   flex-wrap: wrap;
 }
-.cu-data-picker__select-month > div,
-.cu-data-picker__select-year > div {
+.cu-data-picker__div > div {
   width: 25%;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
+  height: 40px;
   cursor: pointer;
   transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cu-data-picker__select-days span:hover,
-.cu-data-picker__select-month > div:hover,
-.cu-data-picker__select-year > div:hover {
-  background-color: var(--cu-background-color-light);
+.cu-data-picker__div .cu-date__divcell {
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  width: 100%;
+  border-radius: 12px;
 }
 
-.cu-data-picker__select-content .is-selected {
+.cu-data-picker__table td:not(.is-disabled):hover .cu-date__cell,
+.cu-data-picker__div > div:hover .cu-date__divcell {
+  color: var(--cu-color-primary);
+  /* background-color: var(--cu-color-primary-light9); */
+}
+
+.cu-data-picker__table td:not(.is-disabled).is-selected .cu-date__cell,
+.cu-data-picker__div > div.is-selected .cu-date__divcell {
+  color: #fff;
+  background-color: var(--cu-color-primary);
+}
+
+.cu-data-picker__table td.is-contain-start:not(.is-notcur),
+.cu-data-picker__table td.is-contain-end:not(.is-notcur),
+.cu-data-picker__table td.is-contain:not(.is-notcur) {
+  background-color: var(--cu-color-primary-light9);
   color: var(--cu-color-primary);
 }
 
-.cu-data-picker__select-content [class^='cu-data-picker__select'] .is-disabled {
+.cu-data-picker__table td.is-contain-start {
+  border-radius: 16px 0 0 16px;
+}
+.cu-data-picker__table td.is-contain-end {
+  border-radius: 0 16px 16px 0;
+}
+
+.cu-data-picker__table .is-disabled {
   background-color: var(--cu-background-color-disabled);
   color: var(--cu-text-color-light5);
   cursor: no-drop;
-}
-
-.cu-data-picker__select-days .is-selected:not(.is-notcur)::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  transform: translateX(-50%);
-  width: 30%;
-  height: 2px;
-  background-color: var(--cu-color-primary);
 }
 
 .cu-date-picker__footer {
@@ -184,7 +194,7 @@
 }
 
 .cu-date-table__box {
-  padding: 12px;
+  padding: 10px;
   display: flex;
 }
 .cu-date-table__box > div + div {
@@ -205,34 +215,4 @@
 .cu-date-table__box .shortcuts > span:hover {
   color: var(--cu-color-primary);
   cursor: pointer;
-}
-
-.cu-date-picker__popper.small {
-  font-size: 12px;
-}
-.cu-date-picker__popper.small .cu-data-picker__select-days > div > span {
-  height: 28px;
-}
-.cu-date-picker__popper.small .cu-date-picker__select {
-  width: 280px;
-}
-
-.cu-date-picker__popper.small .cu-data-picker__select-week {
-  font-size: 13px;
-}
-
-.cu-date-picker__popper.small .cu-data-picker__select-head {
-  padding: 4px;
-}
-
-.cu-date-picker__popper.small .cu-date-table__box {
-  padding: 8px;
-}
-
-.cu-date-picker__popper.small .cu-data-picker__select-head .head-content {
-  font-size: 14px;
-}
-
-.cu-date-picker__popper.small .cu-data-picker__select-days > div + div {
-  margin-top: 2px;
 }

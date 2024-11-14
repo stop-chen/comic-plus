@@ -2,15 +2,15 @@
   <div class="cu-schedule-calendar">
     <div class="cu-schedule-calendar__header">
       <span> {{ ty + '年 ' + (tm + 1) + '月' }}</span>
-      <span class="cu-schedule-calendar__icons">
-        <Up @click="prevMonth" />
-        <Down @click="nextMonth" />
-      </span>
+      <button-group size="small">
+        <c-button color="#acadad" light :icon="Left" @click="prevMonth" />
+        <c-button color="#acadad" light :icon="Right" @click="nextMonth" />
+      </button-group>
     </div>
     <table class="cu-schedule-calendar__table" cellspacing="5" cellpadding="5">
       <thead class="cu-schedule-calendar__thead">
         <tr class="cu-schedule-calendar__tr">
-          <th v-for="(week, idx) in weeks" class="cu-schedule-calendar__th">
+          <th v-for="week in weeks" class="cu-schedule-calendar__th">
             {{ weekForLang[week] }}
           </th>
         </tr>
@@ -30,14 +30,17 @@
         </tr>
       </tbody>
     </table>
-    <slot name="calendar"></slot>
+    <div class="cu-schedule-calendar__extra" v-if="$slots.calendar">
+      <slot name="calendar" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, ref, watch, warn } from 'vue';
 import { SCHEDULE_PROVIDE } from './type';
-import { Down, Up } from '../../../icons';
+import { CuButtonGroup as ButtonGroup, CuButton as CButton } from '../../../index';
+import { Left, Right } from '../../../icons';
 
 defineOptions({
   name: 'CuCalendar'
@@ -61,7 +64,6 @@ const weekForLang = { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五'
 
 function setValue() {
   let time = new Date(dn.value);
-
   ty.value = time.getFullYear();
   tm.value = time.getMonth();
 }
@@ -144,17 +146,17 @@ function today() {
   setValue();
 }
 
-function isSelect(item) {
+function isSelect(item: DateItem) {
   let time: number = getTime(item);
   let f: number = new Date(dn.value).setHours(0, 0, 0, 0);
   return time === f;
 }
 
-function hasSchedule(item) {
+function hasSchedule(item: DateItem) {
   return hasScheduleDays.value.includes(getTime(item));
 }
 
-function getTime(item) {
+function getTime(item: DateItem) {
   let mon = tm.value;
   item.isPrevMonth && mon--;
   item.isNextMonth && mon++;
@@ -187,11 +189,11 @@ type DateType = keyof typeof dateTypeFn | Date;
 
 function selectDate(value: DateType) {
   if (props.loading) return;
-  if (value in dateTypeFn) {
-    dateTypeFn[value]?.();
-  } else if (value instanceof Date) {
+  if (value instanceof Date) {
     dn.value = new Date(value).setHours(0, 0, 0, 0);
     setValue();
+  } else if (value in dateTypeFn) {
+    dateTypeFn[value]?.();
   } else {
     warn('SelectDate can only pass in parameters in Date or specified string format');
     return;

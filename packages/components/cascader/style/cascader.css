@@ -85,7 +85,7 @@
 }
 
 .cu-cascader__popper .cu-cascader-pane__item:hover:not(.disabled) {
-  background-color: var(--cu-background-color-light);
+  background-color: var(--cu-background-color);
 }
 
 .cu-cascader__popper .cu-cascader-pane__item.disabled {

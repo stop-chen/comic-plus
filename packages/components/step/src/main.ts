@@ -50,7 +50,7 @@ export default defineComponent({
       return h(
         'div',
         {
-          class: ['cu-step', props.direction ? 'is-' + props.direction : undefined],
+          class: ['cu-step', props.direction ? 'is-' + props.direction : undefined, { 'is-border': props.border }],
           style: { '--cu-step-active-color': props.activeColor }
         },
         slots

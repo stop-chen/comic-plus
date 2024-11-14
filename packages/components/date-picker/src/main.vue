@@ -29,7 +29,7 @@
       </span>
     </div>
     <popper :show="show" :trigger="datePickerRef">
-      <div class="cu-date-picker__popper" ref="popperRef" :class="[{ 'is-range': range }, currentSize]">
+      <div class="cu-date-picker__popper" ref="popperRef" :class="[{ 'is-range': range }]">
         <date-select />
       </div>
     </popper>

@@ -1,13 +1,9 @@
 <template>
-  <div :style="cardStyle" ref="cardRef" :class="{ fold: isFold }" class="cu-schedule-cards">
+  <div :style="cardStyle" ref="cardRef" class="cu-schedule-cards">
     <div
       v-for="(card, idx) in data.children"
       class="cu-schedule-card"
-      :class="{ 'is-shadow': injectProps.cardShadow }"
-      :style="{
-        ...cardStyleFn(card),
-        '--x': 0 - tr * idx + 'px'
-      }"
+      :style="cardStyleFn(card)"
       :key="card.time + idx">
       <slot name="card" :data="card">
         <component v-if="isVNode(card.content!)" :is="card.content!"></component>
@@ -25,25 +21,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, isVNode, ref } from 'vue';
-import { SCHEDULE_PROVIDE } from './type';
-import { useResize } from '../../../hooks';
+import { PropType, computed, inject, isVNode, ref } from 'vue';
+import { CardList, SCHEDULE_PROVIDE, Schedules } from './type';
 
 defineOptions({
   name: 'CuScheduleCards'
 });
 
 const props = defineProps({
-  data: Object
+  data: Object as PropType<CardList[number]>
 });
 
 const { props: injectProps, spacing } = inject(SCHEDULE_PROVIDE);
 
-const colors = ['primary', 'success', 'warning', 'danger'];
-
 const cardRef = ref();
-const isFold = ref(cardRef.value?.scrollWidth > cardRef.value?.offsetWidth);
-const tr = ref(0);
 
 const maxHeight = computed(() => {
   return (injectProps.end + 1 - injectProps.start) * spacing.value;
@@ -57,7 +48,7 @@ const endTime = computed(() => {
   return Math.min(props.data.endTime, injectProps.end + 1);
 });
 
-const getMaxPx = (number) => {
+const getMaxPx = (number: number) => {
   return Math.min(Math.max(number, 0), maxHeight.value);
 };
 
@@ -68,18 +59,10 @@ const cardStyle = computed(() => {
   };
 });
 
-function cardStyleFn(card) {
+function cardStyleFn(card: Schedules[number]) {
   return {
     marginTop: getMaxPx((card.getTimes[0] - startTime.value) * spacing.value) + 'px',
     marginBottom: getMaxPx((endTime.value - card.getTimes[1]) * spacing.value) + 'px'
   };
 }
-
-function updateFold() {
-  isFold.value = cardRef.value?.scrollWidth > cardRef.value?.offsetWidth;
-  let sum = (cardRef.value?.scrollWidth - cardRef.value?.offsetWidth) / (props.data.children.length - 1);
-  tr.value = isNaN(sum) ? 0 : sum;
-}
-
-useResize(cardRef, updateFold);
 </script>

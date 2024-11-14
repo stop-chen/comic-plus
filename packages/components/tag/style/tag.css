@@ -16,7 +16,6 @@
   vertical-align: middle;
   overflow: hidden;
   border-color: var(--cu-border-color);
-  transition: all 320ms ease;
 }
 
 .cu-tag.is-round,
@@ -161,11 +160,4 @@
 .cu-tag-complex .cu-tag-content {
   background-color: #ffffff;
   color: var(--cu-text-color);
-}
-
-.cu-tag + .cu-tag,
-.cu-tag + .cu-tag-complex,
-.cu-tag-complex + .cu-tag,
-.cu-tag-complex + .cu-tag-complex {
-  margin-left: 10px;
 }

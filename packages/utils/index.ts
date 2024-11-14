@@ -7,3 +7,4 @@ export * from './emitter';
 export * from './look-scroll';
 export * from './typescript';
 export * from './dom';
+export * from './client';

@@ -3,7 +3,8 @@ import { isNumber } from '../../../utils';
 
 export const dateTableProps = {
   date: [Date, String, Number] as PropType<Date | string | number>,
-  flagTime: Number
+  flagTime: Number,
+  contain: Array as PropType<number[]>
 } as const;
 
 export type DateTableProps = ExtractPropTypes<typeof dateTableProps>;

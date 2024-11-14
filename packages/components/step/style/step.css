@@ -17,7 +17,7 @@
   align-items: flex-start;
   position: relative;
   flex-shrink: 1;
-  color: var(--cu-text-color-light5);
+  color: var(--cu-text-color-light3);
 }
 .cu-step.is-vertical .cu-step-item {
   flex-direction: row;
@@ -65,7 +65,7 @@
   right: 0;
   top: 9px;
   height: 2px;
-  background-color: var(--cu-text-color-light5);
+  background-color: var(--cu-text-color-light4);
 }
 
 .cu-step-item:last-child .cu-step-item__line {
@@ -142,9 +142,12 @@
   align-items: center;
   justify-content: center;
   min-width: 80px;
-  color: var(--cu-text-color-light4);
-  border: 1px solid var(--cu-border-color);
+  color: var(--cu-text-color-light3);
+
   border-radius: var(--cu-border-radius);
+}
+.cu-step.is-border .cu-step-card {
+  border: 1px solid var(--cu-border-color);
 }
 
 .cu-step.is-vertical .cu-step-card {

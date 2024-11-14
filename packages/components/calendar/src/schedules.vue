@@ -11,10 +11,10 @@
 
 <script setup lang="ts">
 import { PropType, computed } from 'vue';
-import { DateItem } from './type';
+import { DateItem, Schedules } from './type';
 
 const props = defineProps({
-  data: Array as PropType<any[]>,
+  data: Array as PropType<DateItem[]>,
   day: Object as PropType<DateItem>
 });
 
@@ -24,7 +24,7 @@ const eventDay = computed(() => {
   return props.data.find((v) => v.date.getTime() === props.day.date.getTime());
 });
 
-function getClasses(item) {
+function getClasses(item: Schedules[number]) {
   let classes = [];
 
   if (item.startDate.getDate() === props.day.value) {
@@ -38,7 +38,7 @@ function getClasses(item) {
   return classes;
 }
 
-function mouseenter(item) {
+function mouseenter(item: Schedules[number]) {
   emit('mouse-in', item);
 }
 </script>

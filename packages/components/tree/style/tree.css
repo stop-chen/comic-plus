@@ -33,7 +33,7 @@
 }
 
 .cu-tree__content:hover {
-  background-color: var(--cu-background-color-light);
+  background-color: var(--cu-background-color);
 }
 
 .cu-tree__content .checkbox {

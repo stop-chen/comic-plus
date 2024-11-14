@@ -4,9 +4,11 @@ import { DatePickerProps } from './main.props';
 export type ValueType = Date | string | number | Date[] | string[] | number[];
 export type ValueAlone = Date | string | number;
 
+export type ShortcutValue = ValueAlone | [ValueAlone, ValueAlone];
+
 export type Shortcut = {
   label: string;
-  value: ValueType | (() => ValueType);
+  value: ShortcutValue | (() => ShortcutValue);
 };
 
 type DatePickerProvide = {

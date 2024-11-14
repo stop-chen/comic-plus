@@ -1,14 +1,8 @@
 <template>
-  <div
-    class="cu-upload"
-    :class="{ 'is-disabled': disabled }"
+  <div class="cu-upload" :class="{ 'is-disabled': disabled }"
     :style="{ '--cu-upload-size': size ? size + 'px' : undefined }">
     <template v-if="type === 'picture'">
-      <upload-list
-        :disabled="disabled"
-        :type="type"
-        :previewList="previewList"
-        :uploadFileEnum="uploadFileEnum"
+      <upload-list :disabled="disabled" :type="type" :previewList="previewList" :uploadFileEnum="uploadFileEnum"
         @remove="removeFile">
         <upload-choose :disabled="disabled" :type="type" @choose="uploadHandleClick">
           <slot v-if="$slots['default']"></slot>
@@ -34,23 +28,12 @@
       <div class="cu-upload__tips">
         <slot name="tip"></slot>
       </div>
-      <upload-list
-        :disabled="disabled"
-        :type="type"
-        :previewList="previewList"
-        :uploadFileEnum="uploadFileEnum"
+      <upload-list :disabled="disabled" :type="type" :previewList="previewList" :uploadFileEnum="uploadFileEnum"
         @remove="removeFile" />
     </template>
 
-    <input
-      type="file"
-      ref="inputRef"
-      v-show="false"
-      @change="handleChange"
-      :multiple="multiple"
-      :disabled="disabled"
-      :accept="accept"
-      :limit="limit" />
+    <input type="file" ref="inputRef" v-show="false" @change="handleChange" :multiple="multiple" :disabled="disabled"
+      :accept="accept" :limit="limit" />
   </div>
 </template>
 
@@ -203,8 +186,6 @@ function removeFile(uid: number) {
 async function submit() {
   let result = true;
   const readyList = <UploadInstance[]>Object.values(uploadFileEnum);
-  // console.log(props.beforeUpload);
-
   if (props.beforeUpload) {
     let res = await props.beforeUpload(readyList);
     result = isBoolean(res) ? res : result;

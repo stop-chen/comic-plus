@@ -54,7 +54,7 @@
   width: var(--cu-scrollbar-barwidth);
 }
 
-.cu-scrollbar:hover .cu-scrollbar__thumb {
+.cu-scrollbar:hover > .cu-scrollbar__thumb {
   opacity: 1;
 }
 

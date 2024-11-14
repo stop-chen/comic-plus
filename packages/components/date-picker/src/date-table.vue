@@ -25,29 +25,30 @@
       <div class="cu-data-picker__select-week" v-show="pannelType === 'date'">
         <span v-for="week in weeks" :key="week">{{ weekForLang(week) }}</span>
       </div>
-      <div class="cu-data-picker__select-days" v-show="pannelType === 'date'">
-        <div v-for="(weeks, weeksIndex) in dates" :key="weeksIndex">
-          <span
-            v-for="(day, index) in weeks"
-            :key="index"
-            :class="[
-              { 'is-notcur': !day.isCurMonth },
-              { 'is-disabled': isDisabled(day) },
-              { 'is-selected': isSelected(day) }
-            ]"
-            @click="selectDay(day)"
-            >{{ day.value }}</span
-          >
-        </div>
-      </div>
-      <div class="cu-data-picker__select-month" v-show="pannelType === 'month'">
+      <table class="cu-data-picker__table" v-show="pannelType === 'date'">
+        <tr v-for="(weeks, weeksIndex) in dates" :key="weeksIndex">
+          <td v-for="(day, index) in weeks" :key="index" :class="[
+            { 'is-notcur': !day.isCurMonth },
+            { 'is-disabled': isDisabled(day) },
+            { 'is-selected': isSelected(day) },
+            ...containClass(day)
+          ]" @click="selectDay(day)">
+            <div class="cu-date__cell">{{ day.value }}</div>
+          </td>
+        </tr>
+      </table>
+      <div class="cu-data-picker__div" v-show="pannelType === 'month'">
         <div v-for="month in 11" :class="{ 'is-selected': month - 1 === tmpMonth }" @click="selectMonth(month - 1)">
-          {{ monthForLang(month - 1) + '月' }}
+          <div class="cu-date__divcell">
+            {{ monthForLang(month - 1) + '月' }}
+          </div>
         </div>
       </div>
-      <div class="cu-data-picker__select-year" v-show="pannelType === 'year'">
+      <div class="cu-data-picker__div" v-show="pannelType === 'year'">
         <div v-for="year in yearList" :class="{ 'is-selected': year === tmpYear }" @click="selectYear(year)">
-          {{ year }}
+          <div class="cu-date__divcell">
+            {{ year }}
+          </div>
         </div>
       </div>
     </div>
@@ -171,28 +172,30 @@ function selectDay(item: DateItem) {
       ? (--tmpYear.value, (tmpMonth.value = 11))
       : --tmpMonth.value
     : item.isNextMonth
-    ? tmpMonth.value === 11
-      ? (++tmpYear.value, (tmpMonth.value = 0))
-      : ++tmpMonth.value
-    : (tmpYear.value, tmpMonth.value);
+      ? tmpMonth.value === 11
+        ? (++tmpYear.value, (tmpMonth.value = 0))
+        : ++tmpMonth.value
+      : (tmpYear.value, tmpMonth.value);
   tmpDate.value = item.value;
   dateNumber.value = new Date(tmpYear.value, tmpMonth.value, tmpDate.value).getTime();
 }
 
-function isSelected(item: DateItem) {
+function getDateTime(day: DateItem, number?: boolean) {
   let mon = tmpMonth.value;
-  item.isPrevMonth && mon--;
-  item.isNextMonth && mon++;
-  let time: number = new Date(tmpYear.value, mon, item.value).setHours(0, 0, 0, 0);
+  day.isPrevMonth && mon--;
+  day.isNextMonth && mon++;
+  let time = new Date(tmpYear.value, mon, day.value);
+  return number ? time.setHours(0, 0, 0, 0) : time;
+}
+
+function isSelected(item: DateItem) {
+  let time = getDateTime(item, true);
   let f: number = new Date(dateNumber.value).setHours(0, 0, 0, 0);
   return time === f;
 }
 
 function isDisabled(item: DateItem) {
-  let mon = tmpMonth.value;
-  item.isPrevMonth && mon--;
-  item.isNextMonth && mon++;
-  let time: Date = new Date(tmpYear.value, mon, item.value);
+  let time = getDateTime(item);
   return injectProps.disabledDate?.(time) || false;
 }
 
@@ -202,6 +205,23 @@ function setValue() {
   tmpYear.value = time.getFullYear();
   tmpMonth.value = time.getMonth();
   tmpDate.value = time.getDate();
+}
+
+function containClass(item: DateItem) {
+  if (!injectProps.range) return [];
+  let time: number = getDateTime(item, true) as number;
+  let classs = [];
+
+  if (props.contain[0] === time) {
+    classs.push('is-contain-start');
+  }
+  if (props.contain[1] === time) {
+    classs.push('is-contain-end');
+  }
+  if (props.contain[0] < time && props.contain[1] > time) {
+    classs.push('is-contain');
+  }
+  return classs;
 }
 
 watch(

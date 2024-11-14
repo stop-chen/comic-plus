@@ -17,10 +17,6 @@ export const scheduleProps = {
     default: 100
   },
   loading: Boolean,
-  cardShadow: {
-    type: Boolean,
-    default: true
-  },
   showEmpty: {
     type: Boolean,
     default: true
@@ -40,6 +36,10 @@ export const scheduleProps = {
   cardColor: {
     type: Boolean,
     default: true
+  },
+  separator: {
+    type: String,
+    default: '~'
   }
 } as const;
 

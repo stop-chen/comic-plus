@@ -4,8 +4,8 @@
       <span v-for="el in props.shortcuts" @click="pickShortcut(el.value)">{{ el.label }}</span>
     </div>
     <div class="cu-date-table__box" v-if="props.range">
-      <date-table :date="props.modelValue[0]" ref="dateTableRef1" />
-      <date-table :date="props.modelValue[1]" ref="dateTableRef2" />
+      <date-table :contain="contain" :date="props.modelValue[0]" ref="dateTableRef1" />
+      <date-table :contain="contain" :date="props.modelValue[1]" ref="dateTableRef2" />
     </div>
     <date-table v-else :date="(props.modelValue as ValueAlone)" ref="dateTableRef" />
   </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from 'vue';
+import { ref, inject, computed } from 'vue';
 import DateTable from './date-table.vue';
 import { CuButton as CButton } from '../../button';
 import { isFunction } from '../../../utils';
@@ -29,6 +29,16 @@ const { props, confirm } = inject(DATEPICKER_PROVIDE);
 const dateTableRef = ref(null);
 const dateTableRef1 = ref(null);
 const dateTableRef2 = ref(null);
+
+const contain = computed(() => {
+  if (props.range) {
+    return [
+      props.modelValue[0] ? new Date(props.modelValue[0]).getTime() : new Date().getTime(),
+      props.modelValue[1] ? new Date(props.modelValue[1]).getTime() : new Date().getTime()
+    ];
+  }
+  return [];
+});
 
 function _confirm() {
   if (props.range) {
@@ -50,7 +60,7 @@ function pickShortcut(val: Shortcut['value']) {
     ];
     confirm(datas);
   } else {
-    confirm(new Date(val as Date | string | number).getTime());
+    confirm(new Date(val as ValueAlone).getTime());
   }
 }
 </script>

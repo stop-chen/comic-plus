@@ -1,5 +1,5 @@
 :root {
-  --cu-color-primary: #197ae9;
+  --cu-color-primary: #0364ff;
   --cu-color-primary-light: color-mix(in srgb, var(--cu-color-primary), white 10%);
   --cu-color-primary-light2: color-mix(in srgb, var(--cu-color-primary), white 20%);
   --cu-color-primary-light3: color-mix(in srgb, var(--cu-color-primary), white 30%);
@@ -10,7 +10,7 @@
   --cu-color-primary-light8: color-mix(in srgb, var(--cu-color-primary), white 80%);
   --cu-color-primary-light9: color-mix(in srgb, var(--cu-color-primary), white 90%);
 
-  --cu-color-success: #22c55e;
+  --cu-color-success: #00ba00;
   --cu-color-success-light: color-mix(in srgb, var(--cu-color-success), white 10%);
   --cu-color-success-light2: color-mix(in srgb, var(--cu-color-success), white 20%);
   --cu-color-success-light3: color-mix(in srgb, var(--cu-color-success), white 30%);
@@ -21,7 +21,7 @@
   --cu-color-success-light8: color-mix(in srgb, var(--cu-color-success), white 80%);
   --cu-color-success-light9: color-mix(in srgb, var(--cu-color-success), white 90%);
 
-  --cu-color-warning: #f97316;
+  --cu-color-warning: #ffcc01;
   --cu-color-warning-light: color-mix(in srgb, var(--cu-color-warning), white 10%);
   --cu-color-warning-light2: color-mix(in srgb, var(--cu-color-warning), white 20%);
   --cu-color-warning-light3: color-mix(in srgb, var(--cu-color-warning), white 30%);
@@ -32,7 +32,7 @@
   --cu-color-warning-light8: color-mix(in srgb, var(--cu-color-warning), white 80%);
   --cu-color-warning-light9: color-mix(in srgb, var(--cu-color-warning), white 90%);
 
-  --cu-color-danger: #ef4444;
+  --cu-color-danger: #ee3333;
   --cu-color-danger-light: color-mix(in srgb, var(--cu-color-danger), white 10%);
   --cu-color-danger-light2: color-mix(in srgb, var(--cu-color-danger), white 20%);
   --cu-color-danger-light3: color-mix(in srgb, var(--cu-color-danger), white 30%);
@@ -43,7 +43,7 @@
   --cu-color-danger-light8: color-mix(in srgb, var(--cu-color-danger), white 80%);
   --cu-color-danger-light9: color-mix(in srgb, var(--cu-color-danger), white 90%);
 
-  --cu-color-info: #909399;
+  --cu-color-info: #8c8c8c;
   --cu-color-info-light: color-mix(in srgb, var(--cu-color-info), white 10%);
   --cu-color-info-light2: color-mix(in srgb, var(--cu-color-info), white 20%);
   --cu-color-info-light3: color-mix(in srgb, var(--cu-color-info), white 30%);
@@ -54,7 +54,7 @@
   --cu-color-info-light8: color-mix(in srgb, var(--cu-color-info), white 80%);
   --cu-color-info-light9: color-mix(in srgb, var(--cu-color-info), white 90%);
 
-  --cu-text-color: #303133;
+  --cu-text-color: #354052;
   --cu-text-color-light: color-mix(in srgb, var(--cu-text-color), white 10%);
   --cu-text-color-light2: color-mix(in srgb, var(--cu-text-color), white 20%);
   --cu-text-color-light3: color-mix(in srgb, var(--cu-text-color), white 30%);
@@ -65,12 +65,11 @@
   --cu-text-color-light8: color-mix(in srgb, var(--cu-text-color), white 80%);
   --cu-text-color-light9: color-mix(in srgb, var(--cu-text-color), white 90%);
 
-  --cu-border-color: #e2e8f0;
-  --cu-border-color-disabled: #dcdee2;
-  --cu-background-color: #dcdfe6;
-  --cu-background-color-light: #f3f3f3;
-  --cu-background-color-light2: #f5f6f7;
-  --cu-background-color-disabled: #f5f7fa;
+  --cu-border-color: #d9dfe7;
+  --cu-border-color-disabled: #d0d0d0;
+  --cu-background-color: #eeeeee;
+  --cu-background-color-light: #f0f2f5;
+  --cu-background-color-disabled: #f5f5f5;
   --cu-placeholder-color: #bbbdbf;
 
   /* 其它内容 */

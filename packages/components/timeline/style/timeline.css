@@ -48,16 +48,16 @@
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  border: 2px solid var(--cu-timeline-dotcolor, var(--cu-background-color));
+  border: 2px solid var(--cu-timeline-dotcolor, var(--cu-border-color));
 }
 .cu-timeline__dot.fill {
-  background-color: var(--cu-timeline-dotcolor, var(--cu-background-color));
+  background-color: var(--cu-timeline-dotcolor, var(--cu-border-color));
 }
 
 .cu-timeline__line {
   margin-top: 5px;
   width: 0;
-  border-left: 2px solid var(--cu-background-color);
+  border-left: 2px solid var(--cu-border-color);
   flex: 1;
 }
 .cu-timeline__line.dashed {

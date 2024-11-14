@@ -73,7 +73,7 @@
 }
 
 .cu-progress__circle_bg {
-  stroke: var(--cu-background-color);
+  stroke: var(--cu-background-color-light);
   stroke-width: var(--cu-progress-strokewidth, 6);
   stroke-dasharray: var(--cu-progress-dasharray);
   stroke-dashoffset: 0;

@@ -118,7 +118,7 @@
 }
 
 .cu-option:not(.is-disabled):hover {
-  background-color: var(--cu-background-color-light);
+  background-color: var(--cu-background-color);
 }
 .cu-option.is-active {
   color: var(--cu-color-primary);

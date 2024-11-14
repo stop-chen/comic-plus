@@ -39,4 +39,10 @@ export type ScheduleProvide = {
   spacing: ComputedRef<number>;
 };
 
+export type CardList = {
+  startTime: number;
+  endTime?: number;
+  children: Schedules;
+}[];
+
 export const SCHEDULE_PROVIDE: InjectionKey<ScheduleProvide> = Symbol('SCHEDULE_PROVIDE');

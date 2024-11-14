@@ -17,7 +17,7 @@ export default defineComponent({
             name: props.name,
             label: props.label,
             icon: shallowRef(props.icon),
-            slots: slots['label']?.()
+            labelSlots: slots['label']?.()
           });
         });
       }
@@ -28,7 +28,7 @@ export default defineComponent({
         name: props.name,
         label: props.label,
         icon: shallowRef(props.icon),
-        slots: slots['label']?.()
+        labelSlots: slots['label']?.()
       });
     });
     onBeforeUnmount(() => {

@@ -180,6 +180,7 @@
 .cu-button.is-light {
   --cu-button-color-hover: var(--cu-color-primary);
   --cu-button-border-hover: var(--cu-color-primary);
+  --cu-button-border-active: var(--cu-color-primary-light8);
   --cu-button-background: transparent;
   --cu-button-background-hover: transparent;
   --cu-button-background-disabled: transparent;
@@ -193,6 +194,7 @@
   --cu-button-border-hover: var(--cu-color-primary);
   --cu-button-border-disabled: var(--cu-color-primary-light4);
   --cu-button-background-hover: var(--cu-color-primary-light9);
+  --cu-button-border-active: var(--cu-color-primary-light8);
 }
 .cu-button--success.is-light {
   --cu-button-color: var(--cu-color-success);
@@ -202,6 +204,7 @@
   --cu-button-border-hover: var(--cu-color-success);
   --cu-button-border-disabled: var(--cu-color-success-light4);
   --cu-button-background-hover: var(--cu-color-success-light9);
+  --cu-button-border-active: var(--cu-color-success-light8);
 }
 .cu-button--warning.is-light {
   --cu-button-color: var(--cu-color-warning);
@@ -211,6 +214,7 @@
   --cu-button-border-hover: var(--cu-color-warning);
   --cu-button-border-disabled: var(--cu-color-warning-light4);
   --cu-button-background-hover: var(--cu-color-warning-light9);
+  --cu-button-border-active: var(--cu-color-warning-light8);
 }
 .cu-button--danger.is-light {
   --cu-button-color: var(--cu-color-danger);
@@ -220,6 +224,7 @@
   --cu-button-border-hover: var(--cu-color-danger);
   --cu-button-border-disabled: var(--cu-color-danger-light4);
   --cu-button-background-hover: var(--cu-color-danger-light9);
+  --cu-button-border-active: var(--cu-color-danger-light8);
 }
 .cu-button--info.is-light {
   --cu-button-color: var(--cu-color-info);
@@ -229,6 +234,7 @@
   --cu-button-border-hover: var(--cu-color-info);
   --cu-button-border-disabled: var(--cu-color-info-light4);
   --cu-button-background-hover: var(--cu-color-info-light9);
+  --cu-button-border-active: var(--cu-color-info-light8);
 }
 
 .cu-button.is-dashed {
@@ -389,10 +395,10 @@
 .cu-button:disabled:not(.is-raised):active {
   box-shadow: none;
 }
+.cu-button.is-light:not(:disabled):active,
 .cu-button.is-dashed:not(:disabled):active {
   box-shadow: 0 0 0 2px var(--cu-button-border-active);
 }
-
 .cu-button:not(:disabled).is-text:active {
   background-color: var(--cu-button-background-active);
 }

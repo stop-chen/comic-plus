@@ -14,7 +14,7 @@
     </span>
     <component class="closeicon" v-if="closable" @click="$emit('close')" :is="tagMode ? CloseSmall : CloseOne" />
   </span>
-  <transition v-else name="cu-zoom-x" appear>
+  <transition v-else name="cu-zoom-x" appear @vue:mounted="handleVNodeMounted">
     <span
       class="cu-tag"
       :class="[
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { VNode, computed } from 'vue';
 import '../style/tag.css';
 import { tagProps, tagEmits } from './main.props';
 import { CloseOne, CloseSmall } from '../../../icons';
@@ -66,4 +66,9 @@ const customStyle = computed(() => {
     color: tagMode.value ? props.color : '#fff'
   };
 });
+
+const handleVNodeMounted = (vnode: VNode) => {
+  // @ts-ignore
+  vnode.component.subTree.component.bum = null;
+};
 </script>

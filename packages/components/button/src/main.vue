@@ -78,7 +78,8 @@ const buttonStyle = computed(() => {
         '--cu-button-border': props.color,
         '--cu-button-border-hover': props.color,
         '--cu-button-border-disabled': `color-mix(in srgb, ${props.color}, white 40%)`,
-        '--cu-button-background-hover': `color-mix(in srgb, ${props.color}, white 90%)`
+        '--cu-button-background-hover': `color-mix(in srgb, ${props.color}, white 90%)`,
+        '--cu-button-border-active': `color-mix(in srgb, ${props.color}, white 80%)`
       };
     } else if (props.text) {
       return {

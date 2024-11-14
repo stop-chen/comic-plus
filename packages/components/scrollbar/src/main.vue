@@ -1,6 +1,10 @@
 <template>
   <div class="cu-scrollbar" :class="display" :style="{ height }">
-    <div class="cu-scrollbar__container" :style="{ 'max-height': maxHeight }" ref="scrollRef" @scroll="onScroll">
+    <div
+      class="cu-scrollbar__container"
+      :style="{ 'max-height': maxHeight }"
+      ref="scrollRef"
+      @scroll="onScroll">
       <div ref="containerRef">
         <slot></slot>
       </div>

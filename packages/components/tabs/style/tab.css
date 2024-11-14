@@ -68,7 +68,7 @@
   bottom: -1px;
   height: 1px;
 }
-.cu-tabs.is-circle .cu-tabs__header::after {
+.cu-tabs.is-arc .cu-tabs__header::after {
   display: none;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .cu-tabs.is-card .cu-tabs__button {
-  background-color: var(--cu-background-color);
+  background-color: var(--cu-background-color-light);
   border: 1px solid var(--cu-border-color);
 }
 
@@ -217,7 +217,7 @@
   margin-left: 10px;
 }
 
-.cu-tabs.is-circle .cu-tabs__item .cu-tabs__circle {
+.cu-tabs.is-arc .cu-tabs__item .cu-tabs__arc {
   position: absolute;
   height: 8px;
   right: 12px;
@@ -227,7 +227,7 @@
   transform: scale(0);
 }
 
-.cu-tabs.is-circle .cu-tabs__item.is-active .cu-tabs__circle {
+.cu-tabs.is-arc .cu-tabs__item.is-active .cu-tabs__arc {
   transform: scale(1);
 }
 
@@ -253,13 +253,13 @@
   opacity: 1;
 }
 
-.cu-tabs.is-circle .cu-tabs__item .cu-tabs__closable,
+.cu-tabs.is-arc .cu-tabs__item .cu-tabs__closable,
 .cu-tabs.is-card .cu-tabs__item .cu-tabs__closable {
   height: 14px;
   top: 3px;
   right: 2px;
 }
-.cu-tabs.is-circle .cu-tabs__item .cu-tabs__closable .close-icon {
+.cu-tabs.is-arc .cu-tabs__item .cu-tabs__closable .close-icon {
   border-radius: 50%;
 }
 

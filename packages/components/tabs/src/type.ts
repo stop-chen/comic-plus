@@ -3,7 +3,7 @@ import type { TabsProps } from './main.props';
 import type { TabPaneProps } from './pane.props';
 
 export type PaneInstance = {
-  slots: VNode[];
+  labelSlots: VNode[];
 } & TabPaneProps;
 
 export type TabsProvide = {

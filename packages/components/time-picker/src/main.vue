@@ -1,29 +1,16 @@
 <template>
-  <div
-    class="cu-time-picker"
+  <div class="cu-time-picker"
     :class="[{ expand: show }, { 'is-disabled': disabled }, { 'is-range': range }, currentSize]"
-    v-click-outside:[popperRef]="onClickOutside"
-    ref="timePickerRef">
+    v-click-outside:[popperRef]="onClickOutside" ref="timePickerRef">
     <div class="cu-time-picker__content" @click="handleClick">
       <span class="prefix-icon">
         <Time />
       </span>
-      <input
-        class="cu-input__inner"
-        type="text"
-        readonly
-        :value="range ? modelValue[0] : modelValue"
-        :placeholder="range ? startPlaceholder : placeholder"
-        :disabled="disabled" />
+      <input class="cu-input__inner" type="text" readonly :value="range ? modelValue[0] : modelValue"
+        :placeholder="range ? startPlaceholder : placeholder" :disabled="disabled" />
       <span v-if="range">{{ rangeSeparator }}</span>
-      <input
-        v-if="range"
-        class="cu-input__inner"
-        type="text"
-        readonly
-        :value="modelValue[1]"
-        :placeholder="endPlaceholder"
-        :disabled="disabled" />
+      <input v-if="range" class="cu-input__inner" type="text" readonly :value="modelValue[1]"
+        :placeholder="endPlaceholder" :disabled="disabled" />
       <span class="suffix-icon" v-if="clearable">
         <CloseOne class="clearable" v-show="hasValue" @click.stop="clear" />
       </span>

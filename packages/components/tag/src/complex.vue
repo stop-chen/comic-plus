@@ -12,7 +12,7 @@
       <CloseOne class="closeicon" v-if="closable" @click="$emit('close')" />
     </span>
   </span>
-  <transition v-else name="cu-zoom-x" appear>
+  <transition v-else name="cu-zoom-x" appear @vue:mounted="handleVNodeMounted">
     <span
       class="cu-tag-complex"
       :class="[type ? 'cu-tag--' + type : undefined, { 'is-round': round }]"
@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { VNode } from 'vue';
 import { CloseOne } from '../../../icons';
 import '../style/tag.css';
 import { tagComplexProps, tagComplexEmits } from './complex.props';
@@ -42,4 +43,9 @@ const emit = defineEmits(tagComplexEmits);
 function handleClose() {
   emit('close');
 }
+
+const handleVNodeMounted = (vnode: VNode) => {
+  // @ts-ignore
+  vnode.component.subTree.component.bum = null;
+};
 </script>

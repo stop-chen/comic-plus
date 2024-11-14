@@ -8,7 +8,11 @@ export const stepProps = {
   },
   active: Number,
   center: Boolean,
-  activeColor: String
+  activeColor: String,
+  border: {
+    type: Boolean,
+    default: true
+  }
 } as const;
 
 export type StepProps = ExtractPropTypes<typeof stepProps>;

@@ -22,22 +22,18 @@
       </thead>
       <tbody class="cu-calendar__tbody">
         <tr v-for="week in dates" class="cu-calendar__tr">
-          <td
-            v-for="day in week"
-            class="cu-calendar__td"
+          <td v-for="day in week" class="cu-calendar__td"
             :class="{ 'is-prev': day.isPrevMonth, 'is-next': day.isNextMonth, 'is-today': isSelect(day) }"
             @click="selectDay(day)">
             <div class="cu-calendar__cell">
-              <p class="cu-calendar__date" v-if="showDay">{{ day.value }}</p>
+              <div class="cu-calendar__date" v-if="showDay">{{ formatDate(day.date, format ?? 'd') }}</div>
               <schedules-list v-if="openSchedule" :data="filterSchedules" :day="day" @mouse-in="dFc" @mouse-out="dFc" />
-              <slot
-                name="day"
-                :data="{
-                  isSelected: isSelect(day),
-                  day: day.value,
-                  type: day.isPrevMonth ? 'prev-month' : day.isNextMonth ? 'next-month' : 'current-month',
-                  date: formatDate(day.date, 'yyyy-MM-dd')
-                }"></slot>
+              <slot name="day" :data="{
+                isSelected: isSelect(day),
+                day: day.value,
+                type: day.isPrevMonth ? 'prev-month' : day.isNextMonth ? 'next-month' : 'current-month',
+                date: formatDate(day.date, 'yyyy-MM-dd')
+              }"></slot>
             </div>
           </td>
         </tr>
@@ -118,6 +114,7 @@ const dates = computed(() => {
       date: new Date(ty.value, tm.value, index + 1)
     };
   });
+
   let fd = new Date(ty.value, tm.value, 1).getDay();
   let ld = new Date(ty.value, tm.value, 0).getDate();
   let len: number, i: number;
@@ -133,7 +130,7 @@ const dates = computed(() => {
     dl.push({
       isNextMonth: true,
       value: i + 1,
-      date: new Date(ty.value, tm.value + 1, i)
+      date: new Date(ty.value, tm.value + 1, i + 1)
     });
   }
   let result: DateItem[][] = [];
@@ -150,6 +147,7 @@ const dates = computed(() => {
   if (result[result.length - 1].every((v) => v.isNextMonth)) {
     result.pop();
   }
+  console.log(result);
 
   return result;
 });
@@ -195,11 +193,13 @@ function selectDay(item: DateItem) {
       ? (--ty.value, (tm.value = 11))
       : --tm.value
     : item.isNextMonth
-    ? tm.value === 11
-      ? (++ty.value, (tm.value = 0))
-      : ++tm.value
-    : (ty.value, tm.value);
-  dn.value = new Date(ty.value, tm.value, item.value).setHours(0, 0, 0, 0);
+      ? tm.value === 11
+        ? (++ty.value, (tm.value = 0))
+        : ++tm.value
+      : (ty.value, tm.value);
+  dn.value = new Date(ty.value, tm.value, item.value).getTime();
+
+
 }
 
 // function dateFormat(day) {

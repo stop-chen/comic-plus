@@ -39,7 +39,7 @@
 }
 
 .cu-slider.is-disabled {
-  --cu-slider-color: var(--cu-background-color);
+  --cu-slider-color: var(--cu-border-color-disabled);
 }
 
 .cu-slider.is-disabled .cu-slider__container {
@@ -94,6 +94,7 @@
   background-color: var(--cu-slider-color);
   height: 100%;
   border-radius: calc(var(--cu-slider-size) / 2);
+  /* transition: all 200ms; */
 }
 .cu-slider__marks,
 .cu-slider__steps {
@@ -145,6 +146,7 @@
   translate: -50% -50%;
   width: var(--cu-slider-button-size);
   height: var(--cu-slider-button-size);
+  /* transition: all 200ms; */
 }
 
 .cu-slider__button {

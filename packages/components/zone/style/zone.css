@@ -63,7 +63,7 @@
 }
 
 .cu-zone.is-disabled > .cu-zone__line {
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: no-drop;
 }
 

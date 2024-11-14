@@ -5,12 +5,12 @@ import { CalendarProps } from '../src/main.props';
 
 let temp = 1;
 
-export function getUid() {
+export function getUid(): number {
   return Date.now() + temp++;
 }
 
-function parseDate(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+function parseDate(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0);
 }
 
 type useSchedulesOptions = {
@@ -87,8 +87,6 @@ export const useSchedules = (props: CalendarProps, { year, month, dates }: useSc
         event['top'] = diff * 24 - sum + sum2;
       }
     }
-    // console.log(result);
-
     return result;
   };
 

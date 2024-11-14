@@ -1,10 +1,4 @@
-import { isClient } from '@vueuse/core';
-import { isWindow } from '../../../utils';
-
-const raf = (fn: () => void) =>
-  isClient ? window.requestAnimationFrame(fn) : (setTimeout(fn, 16) as unknown as number);
-
-const caf = (handle: number) => (isClient ? window.cancelAnimationFrame(handle) : clearTimeout(handle));
+import { isWindow, raf, caf } from '../../../utils';
 
 function getNextScrollTop(t: number, b: number, c: number, d: number) {
   const cc = c - b;
@@ -42,7 +36,7 @@ export function animateScrollTo(container: HTMLElement | Window, from: number, t
 }
 
 export function elAnimation(el: Element, duration?: number) {
-  const time = 1000 + (duration ?? 0);
+  const time = 1000 + (duration ?? 0); //duration表示动画持续时间，time设置 +1000 确保动画运行结束再移除动画类名
   el.classList.add('cu-anchor--animation');
   setTimeout(() => {
     el.classList.remove('cu-anchor--animation');
