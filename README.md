@@ -5,8 +5,8 @@
 <p align="center">Comic Plus | 一个vue3 + ts的UI框架</p>
 
 <p align="center">
- <img src="https://img.shields.io/badge/license-MIT-green"/>
- <img src="https://img.shields.io/badge/version-1.8.3-red"/>
+ <img src="https://img.shields.io/badge/license-MIT-red"/>
+ <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fstop-chen%2Fcomic-plus%2Fmaster%2Fpackage.json&query=%24.version&label=version&color=%230364ff"/>
  <img src="https://img.shields.io/badge/npm-v2.8.3-green"/>
  <img src="https://img.shields.io/badge/typescript-^5.6.2-blue"/>
  <img src="https://img.shields.io/badge/extension for-VsCode-purple"/>
