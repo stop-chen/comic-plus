@@ -2,10 +2,7 @@
   <div class="cu-clock cu-clock--circle">
     <div class="cu-clock__container">
       <div class="cu-clock__times">
-        <span
-          v-for="(time, idx) in times"
-          class="cu-clock__times-item"
-          :class="{ 'roman-text': props.romanText }"
+        <span v-for="(time, idx) in times" class="cu-clock__times-item" :class="{ 'roman-text': props.romanText }"
           :style="{
             '--cu-clock-time-rotate': (180 / times.length) * idx + 'deg'
           }">
@@ -17,35 +14,27 @@
           </div>
         </span>
       </div>
-      <div
-        v-if="props.modules?.includes('date')"
-        class="cu-clock-date"
+      <div v-if="props.modules?.includes('date')" class="cu-clock-date"
         :style="{ color: props.color ? '#ffffff' : undefined }">
         {{ date }}
       </div>
-      <div
-        class="cu-clock__pointer hour"
-        :style="{
-          '--cu-clock-time-rotate': (360 / 12) * getTimes.hour + 'deg'
-        }"></div>
-      <div
-        class="cu-clock__pointer minute"
-        :style="{
-          '--cu-clock-time-rotate': (360 / 60) * getTimes.minute + 'deg'
-        }"></div>
-      <div
-        class="cu-clock__pointer second"
-        :style="{
-          '--cu-clock-time-rotate': (360 / 60) * getTimes.second + 'deg'
-        }"></div>
+      <div class="cu-clock__pointer hour" :style="{
+        '--cu-clock-time-rotate': (360 / 12) * getTimes.hour + 'deg'
+      }"></div>
+      <div class="cu-clock__pointer minute" :style="{
+        '--cu-clock-time-rotate': (360 / 60) * getTimes.minute + 'deg'
+      }"></div>
+      <div class="cu-clock__pointer second" :style="{
+        '--cu-clock-time-rotate': (360 / 60) * getTimes.second + 'deg'
+      }"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { inject, ref, computed, watch } from 'vue';
+import { inject, computed } from 'vue';
 import { CLOCK_PROVIDE, NUMBER_ROMAN } from '../type';
-import { isNumber, formatDate } from '../../../../utils';
+import { isNumber } from '../../../../utils';
 
 const timeList1 = [
   [12, 6],
@@ -88,8 +77,7 @@ const timeList2 = [
   ['', '']
 ];
 
-const { getTimes, props } = inject(CLOCK_PROVIDE)!;
-const date = ref(formatDate(new Date(), 'yyyy-MM-dd'));
+const { getTimes, props, date } = inject(CLOCK_PROVIDE)!;
 
 const hasMarks = computed(() => {
   return props.modules?.some((val) => val === 'second_marks' || val === 'marks');
@@ -111,11 +99,4 @@ const hasNumbers = computed(() => {
   return props.modules && props.modules.includes('numbers');
 });
 
-//监听小时变化更新日期
-watch(
-  () => getTimes.value.hour,
-  () => {
-    date.value = formatDate(new Date(), 'yyyy-MM-dd');
-  }
-);
 </script>

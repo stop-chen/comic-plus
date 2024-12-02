@@ -54,15 +54,15 @@ export const useSchedules = (props: CalendarProps, { year, month, dates }: useSc
           let T = day.isPrevMonth ? -1 : day.isNextMonth ? 1 : 0;
           let timeTemp = new Date(year.value, month.value + T, day.value).getTime();
 
-          let copy = structuredClone(schedules); //深克隆  有浏览器限制问题
+          // let copy = structuredClone(schedules); //深克隆  有浏览器限制问题
           // 查找到所有包含当天的日程
-          let events = copy.filter((v) => {
+          let events = schedules.filter((v) => {
             // return v.startTime <= timeTemp && v.endTime >= timeTemp;
             return v.startDate.getTime() <= timeTemp && v.endDate.getTime() >= timeTemp;
           });
           return {
             ...day,
-            events
+            events: structuredClone(events)
           };
         });
       })

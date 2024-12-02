@@ -1,26 +1,16 @@
 <template>
   <li class="cu-sub-menu" :class="{ 'is-active': active }">
-    <div
-      class="cu-sub-menu__head"
-      ref="submenuRef"
-      :tooltip-disabled="tooltipDisabled"
+    <div class="cu-sub-menu__head" ref="submenuRef" :tooltip-disabled="tooltipDisabled"
       v-menu-tooltip:right-center="props.label">
       <component v-if="isVueComponent(icon)" :is="icon" class="cu-menu__icon" />
       <span v-show="!injectProps.collapse || submenu">
         <slot name="label"> {{ label }} </slot>
       </span>
-      <component
-        v-show="!injectProps.collapse || submenu"
-        class="suffix-icon"
-        :is="injectProps.mode === 'horizontal' ? Down : Right"
-        :class="{ unfold }" />
+      <component v-show="!injectProps.collapse || submenu" class="suffix-icon"
+        :is="injectProps.mode === 'horizontal' ? Down : Right" :class="{ unfold }" />
     </div>
     <template v-if="float">
-      <menu-popper
-        :trigger="submenuRef"
-        :show="unfold"
-        :fixed="!teleportDisabled"
-        @mouse-in="clearTimes"
+      <menu-popper :trigger="submenuRef" :show="unfold" :fixed="!teleportDisabled" @mouse-in="clearTimes"
         @mouse-out="createTimes">
         <ul class="cu-sub-menu__content" :style="style">
           <slot></slot>
@@ -66,7 +56,7 @@ var timer: number | null = null,
   clearLeave: (() => void) | null = null,
   clearClick: (() => void) | null = null;
 
-const unfold = ref(false);
+const unfold = ref(props.open);
 const menus = reactive({}) as { [key: string]: MenuItem };
 
 const { props: injectProps, style } = inject(MENU_PROVIDE);

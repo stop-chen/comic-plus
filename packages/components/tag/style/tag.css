@@ -58,6 +58,7 @@
 
 .cu-tag.is-light {
   background-color: transparent;
+  color: inherit;
 }
 
 .cu-tag.is-border {

@@ -10,8 +10,7 @@ export default defineComponent({
       return {
         '--cu-divider-color': props.color,
         '--cu-divider-style': props.lineStyle,
-        '--cu-divider-width': props.lineWeight + 'px',
-        justifyContent: POSITION_ENUM[props.contentPosition]
+        '--cu-divider-width': props.lineWeight + 'px'
       };
     });
 
@@ -19,10 +18,15 @@ export default defineComponent({
       return h(
         'span',
         {
-          class: ['cu-divider', 'cu-divider--' + props.direction, props.type ? 'cu-divider--' + props.type : undefined],
+          class: [
+            'cu-divider',
+            'cu-divider--' + props.direction,
+            props.type ? 'cu-divider--' + props.type : undefined,
+            'cu-divider--text-' + props.contentPosition
+          ],
           style: computedStyle.value
         },
-        slots.default && props.direction === 'horizontal' ? h('span', null, slots) : undefined
+        slots.default && props.direction === 'horizontal' ? h('span', { class: 'cu-divider__inner' }, slots) : undefined
       );
     };
   }

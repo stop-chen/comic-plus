@@ -9,7 +9,6 @@ export const waterfallProps = {
     type: Number,
     default: 10
   },
-  //itemWidth: Number, 移除
   colWidth: Number,
   fadeIn: {
     type: Boolean,

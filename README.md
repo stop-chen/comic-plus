@@ -47,16 +47,16 @@ import { /* 组件名 */ } from 'comic-plus';
 
 ## 组件库官网
 
-<a href="http://comicui.cn">http://comicui.cn</a>
+<a href="https://comicui.cn">https://comicui.cn</a>
 
 ## 组件库使用示例
 
-<a href="http://comicui.cn/admin">http://comicui.cn/admin</a>
+<a href="https://comicui.cn/admin">https://comicui.cn/admin</a>
 
 ## 参与贡献
 
 <p>
   <a href="https://github.com/neishuishui" align="center">
-    <img  width="40px" src="https://avatars.githubusercontent.com/u/72653133?v=4" />
+    <img style="border-radius:50%" width="40px" src="https://avatars.githubusercontent.com/u/72653133?v=4" />
   </a>
 </p>

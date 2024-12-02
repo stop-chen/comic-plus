@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { ref, inject, computed, watch } from 'vue';
-
 import { getNextZIndex } from '../../../utils';
 import { MENU_PROVIDE } from './type';
 import { useFloating, offset, flip, autoUpdate, shift } from '@floating-ui/vue';

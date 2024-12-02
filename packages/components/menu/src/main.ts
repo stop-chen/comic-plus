@@ -1,8 +1,17 @@
-import { defineComponent, h, provide, computed } from 'vue';
-import type { CSSProperties } from 'vue';
+import { StyleValue, computed, defineComponent, h, provide } from 'vue';
 import '../style/menu.css';
 import { menuProps, menuEmits } from './main.props';
 import { MENU_PROVIDE } from './type';
+
+const CSSVAR = [
+  '--cu-menu-bg',
+  '--cu-menu-bg-active',
+  '--cu-menu-bg-hover',
+  '--cu-menu-textcolor',
+  '--cu-menu-textcolor-active',
+  '--cu-menu-textcolor-hover',
+  '--cu-menu-height'
+];
 
 export const Menu = defineComponent({
   name: 'CuMenu',
@@ -14,20 +23,20 @@ export const Menu = defineComponent({
       emit('update:modelValue', name);
     };
 
-    const style = computed<CSSProperties>(() => {
-      return {
-        '--cu-menu-active-background': props.activeBackgroundColor,
-        '--cu-menu-active-text': props.activeTextColor,
-        backgroundColor: props.backgroundColor,
-        color: props.textColor,
-        '--cu-menu-base-height': props.size + 'px'
-      };
+    // 通过计算属性剔除不需要继承的style属性
+    const getProvideStyle = computed(() => {
+      return Object.entries(props.style).reduce((acc, [key, val]) => {
+        if (CSSVAR.includes(key)) {
+          acc[key] = val;
+        }
+        return acc;
+      }, {} as StyleValue);
     });
 
     provide(MENU_PROVIDE, {
       props,
       menuClick,
-      style
+      style: getProvideStyle
     });
 
     return () =>
@@ -39,7 +48,7 @@ export const Menu = defineComponent({
             props.mode ? 'is-' + props.mode : undefined,
             { 'menu-collapse': props.mode === 'vertical' && props.collapse }
           ],
-          style: style.value
+          style: props.style
         },
         slots
       );

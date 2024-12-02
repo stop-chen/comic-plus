@@ -1,10 +1,6 @@
 <template>
   <div class="cu-scrollbar" :class="display" :style="{ height }">
-    <div
-      class="cu-scrollbar__container"
-      :style="{ 'max-height': maxHeight }"
-      ref="scrollRef"
-      @scroll="onScroll">
+    <div class="cu-scrollbar__container" :style="{ 'max-height': maxHeight }" ref="scrollRef" @scroll="onScroll">
       <div ref="containerRef">
         <slot></slot>
       </div>
@@ -16,7 +12,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, nextTick, onMounted, watch } from 'vue';
-import { useEventListener } from '@vueuse/core';
+import { useMutationObserver, useEventListener } from '@vueuse/core';
 import '../style/scrollbar.css';
 import { scrollbarProps, scrollbarEmits } from './main.props';
 import { useResize } from '../../../hooks';
@@ -41,15 +37,15 @@ const hasThumbx = ref(false);
 
 var clearMoveY: (() => void) | null, clearMoveX: (() => void) | null, clearUp: (() => void) | null;
 
-watch(
-  () => props.display,
-  () => {
-    computedShowThumb();
-  }
-);
-
 useResize(scrollRef, resateScrollBar);
-useResize(containerRef, resateScrollBar);
+useResize(containerRef, resateScrollBar);  //当元素高度发生变化表示容器内容增加，需要重新计算滚动条的高度
+
+//使用useMutationObserver观察子节点的变化可以节省一个中间的嵌套元素，如果使用该观察器就可以删除掉containerRef元素   
+//这样可以在scrollbar组件中实现滚动吸附效果 目前滚动吸附效果还在考虑中 2024-11-15
+// useMutationObserver(scrollRef, resateScrollBar, {
+//   childList: true,
+//   subtree: true,
+// })
 
 function computedShowThumb() {
   hasThumby.value = props.display === 'never' ? false : scrollRef.value?.offsetHeight < scrollRef.value?.scrollHeight;
@@ -166,9 +162,17 @@ function getScrollEvent() {
   return scrollRef.value;
 }
 
-defineExpose({ setBarTop, setBarLeft, getScrollEvent, hasThumby, hasThumbx });
+
+watch(
+  () => props.display,
+  () => {
+    computedShowThumb();
+  }
+);
 
 onMounted(() => {
   resateScrollBar();
 });
+
+defineExpose({ setBarTop, setBarLeft, getScrollEvent, hasThumby, hasThumbx });
 </script>

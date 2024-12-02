@@ -147,8 +147,6 @@ const dates = computed(() => {
   if (result[result.length - 1].every((v) => v.isNextMonth)) {
     result.pop();
   }
-  console.log(result);
-
   return result;
 });
 

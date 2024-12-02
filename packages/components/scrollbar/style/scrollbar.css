@@ -9,7 +9,13 @@
   height: 100%;
   overflow: auto;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
+
+/* .cu-scrollbar__container.cu-scrollbar__snap--y {
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: none;
+} */
 
 .cu-scrollbar__thumb {
   position: absolute;

@@ -101,7 +101,6 @@ function setActiveIndex(num: number): void {
 }
 
 function dotClick(dot: number) {
-  // if (props.arrow === 'never') return;
   let index = itemKeyList.value.findIndex((v) => v === dot);
   flag.value = index >= active.value;
   active.value = index;

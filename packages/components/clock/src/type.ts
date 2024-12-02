@@ -1,5 +1,6 @@
-import { ComputedRef, InjectionKey } from 'vue';
+import {  InjectionKey } from 'vue';
 import { ClockProps } from './main.props';
+import { UseClockReturn } from '../util/useClock';
 
 export const NUMBER_SHOW_ENUM = [
   [true, false, true, true, true, true, true], //0
@@ -32,8 +33,7 @@ export const NUMBER_ROMAN = {
 export const COLOR_ENUM = ['primary', 'danger', 'success', 'warning', 'info'];
 
 export type ClockProvide = {
-  getTimes: ComputedRef<{ hour: number; minute: number; second: number }>;
   props: ClockProps;
-};
+} & UseClockReturn;
 
 export const CLOCK_PROVIDE: InjectionKey<ClockProvide> = Symbol('CLOCK_PROVIDE');

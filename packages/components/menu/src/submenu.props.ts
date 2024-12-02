@@ -4,7 +4,8 @@ export const submenuProps = {
   label: String,
   icon: Object as PropType<Component>,
   index: String,
-  showEllipsis: Boolean
+  showEllipsis: Boolean,
+  open:Boolean
 } as const;
 
 export type SubmenuProps = ExtractPropTypes<typeof submenuProps>;

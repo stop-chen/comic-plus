@@ -1,5 +1,5 @@
 import { unrefElement } from '@vueuse/core';
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onUpdated, nextTick } from 'vue';
 import { Column, UseTableStyleOptions } from '../type';
 import { useResize } from '../../../../hooks';
 
@@ -68,15 +68,14 @@ export const useTableStyle = ({ containerRef, columns, MIN_SIZE }: UseTableStyle
     return classList;
   };
 
-  useResize(containerRef, () => {
+  const uFn = () => {
     getBodyScrollbarWidth();
     updateShadow();
-  });
+  };
 
-  onMounted(() => {
-    getBodyScrollbarWidth();
-    updateShadow();
-  });
+  useResize(containerRef, uFn);
+  onMounted(uFn);
+  onUpdated(uFn);
 
   return {
     barWidth,

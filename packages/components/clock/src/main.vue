@@ -6,11 +6,11 @@
 <script setup lang="ts">
 import { computed, provide } from 'vue';
 import '../style/clock.css';
-import { useNow } from '@vueuse/core';
 import circleClock from './components/circle-clock.vue';
 import numberClock from './components/number-clock.vue';
 import { clockProps } from './main.props';
 import { CLOCK_PROVIDE, COLOR_ENUM } from './type';
+import { useClock } from '../util/useClock';
 
 defineOptions({
   name: 'CuClock'
@@ -18,15 +18,7 @@ defineOptions({
 
 const props = defineProps(clockProps);
 
-const now = useNow({ interval: 1000 });
-
-const getTimes = computed(() => {
-  return {
-    hour: now.value?.getHours(),
-    minute: now.value?.getMinutes(),
-    second: now.value?.getSeconds()
-  };
-});
+const clock = useClock()
 
 const clockStyle = computed(() => {
   if (!props.color) return;
@@ -36,7 +28,7 @@ const clockStyle = computed(() => {
 });
 
 provide(CLOCK_PROVIDE, {
-  getTimes,
-  props
+  props,
+  ...clock
 });
 </script>

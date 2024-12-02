@@ -1,4 +1,4 @@
-import type { PropType, ExtractPropTypes } from 'vue';
+import type { PropType, ExtractPropTypes, StyleValue } from 'vue';
 import { ComicDir, isString } from '../../../utils';
 
 export const menuProps = {
@@ -11,11 +11,12 @@ export const menuProps = {
     type: Number,
     default: 40
   },
-  backgroundColor: String,
-  activeTextColor: String,
-  activeBackgroundColor: String,
-  textColor: String,
-  collapse: Boolean
+  // backgroundColor: String,
+  // activeTextColor: String,
+  // activeBackgroundColor: String,
+  // textColor: String,
+  collapse: Boolean,
+  style: Object as PropType<StyleValue>
 } as const;
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>;

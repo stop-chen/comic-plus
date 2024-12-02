@@ -9,12 +9,16 @@
 .cu-loadingbar__schedule {
   height: 2px;
   width: 50%;
-  background-color: var(--cu-color-primary);
-  transition: width 200ms linear, background-color 100ms;
+  background: var(--cu-loadingbar-bg, var(--cu-color-primary));
+  transition: width 200ms linear, background 100ms;
 }
 
 .cu-loadingbar__schedule.error {
-  background-color: var(--cu-color-danger);
+  background: var(--cu-loadingbar-bg-error, var(--cu-color-danger));
+}
+
+.cu-loadingbar__schedule.finish {
+  background: var(--cu-loadingbar-bg-finish, var(--cu-color-primary));
 }
 
 .loadingbar-leave-active {

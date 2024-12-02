@@ -1,9 +1,9 @@
-import type { ComputedRef, CSSProperties, InjectionKey } from 'vue';
+import type { ComputedRef, InjectionKey, StyleValue } from 'vue';
 import type { MenuProps } from './main.props';
 
 export type MenuProvide = {
   props: MenuProps;
-  style: ComputedRef<CSSProperties>;
+  style: ComputedRef<StyleValue>;
   menuClick: (name: string) => void;
   offset?: number;
 };

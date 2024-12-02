@@ -1,53 +1,75 @@
 .cu-divider {
+  --cu-divider-width: 1px;
+  --cu-divider-style: solid;
+  --cu-divider-color: var(--cu-border-color);
   display: inline-flex;
-  font-size: 14px;
+  font-size: inherit;
   color: var(--cu-text-color);
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  --cu-divider-width: 1px;
-  --cu-divider-style: solid;
-  --cu-divider-color: var(--cu-border-color);
 }
 
-.cu-divider.cu-divider--horizontal {
+.cu-divider--horizontal::before {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 0;
+  border-top: var(--cu-divider-width) var(--cu-divider-style) var(--cu-divider-color);
+  min-width: 20px;
+}
+
+.cu-divider--horizontal::after {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 0;
+  border-top: var(--cu-divider-width) var(--cu-divider-style) var(--cu-divider-color);
+  min-width: 20px;
+}
+
+.cu-divider--horizontal.cu-divider--text-left::before {
+  flex: 0;
+}
+.cu-divider--horizontal.cu-divider--text-right::after {
+  flex: 0;
+}
+
+.cu-divider--horizontal {
   margin: 12px 0;
   display: flex;
   width: 100%;
-  padding: 0 20px;
   height: 0;
-  border-top: var(--cu-divider-width) var(--cu-divider-style) var(--cu-divider-color);
 }
-.cu-divider.cu-divider--vertical {
+.cu-divider--vertical {
   margin: 0 8px;
   display: inline-flex;
   height: 1em;
-  line-height: inherit;
   width: 0;
   border-left: var(--cu-divider-width) var(--cu-divider-style) var(--cu-divider-color);
 }
 
-.cu-divider > span {
+.cu-divider__inner {
   padding: 0 10px;
-  background-color: #fff;
   max-width: 100%;
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.cu-divider.cu-divider--primary {
+.cu-divider--primary {
   --cu-divider-color: var(--cu-color-primary);
 }
-.cu-divider.cu-divider--success {
+.cu-divider--success {
   --cu-divider-color: var(--cu-color-success);
 }
-.cu-divider.cu-divider--danger {
+.cu-divider--danger {
   --cu-divider-color: var(--cu-color-danger);
 }
-.cu-divider.cu-divider--warning {
+.cu-divider--warning {
   --cu-divider-color: var(--cu-color-warning);
 }
-.cu-divider.cu-divider--info {
+.cu-divider--info {
   --cu-divider-color: var(--cu-color-info);
 }
